@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux'
+import { getProduct } from '../../redux/slice/getProductSlice';
 
 const AllProducts = () => {
+
+  const{isLoading, products, error} = useSelector(state=>state.products)
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getProduct())
+  },[dispatch])
+
+  console.log(products)
+
   return (
     <div>
       <h1 className='text-2xl font-semibold py-2 text-gray-700'>All Products</h1>
@@ -20,14 +33,17 @@ const AllProducts = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {isLoading && <p>Loading...</p>}
+            {error && error.message}
+            {products.map((product, index)=>(
+               <tr key={index}>
               <td className='px-6 py-4 flex items-center justify-center'><img
-              className='w-[25px] h-[25px] rounded-sm'
-               src='https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg' /></td>
-              <td className='px-6 py-4 font-medium text-gray-800'>Product 1</td>
-              <td className='px-6 py-4 font-medium text-gray-800'>$23</td>
-              <td className='px-6 py-4 font-medium text-gray-800'>Electronics</td>
-              <td className='px-6 py-4 font-medium text-gray-800'>5</td>
+              className='w-[35px] h-[35px] rounded-sm'
+               src={product.image} /></td>
+              <td className='px-6 py-4 font-medium text-gray-800'>{product.name}</td>
+              <td className='px-6 py-4 font-medium text-gray-800'>${product.price}</td>
+              <td className='px-6 py-4 font-medium text-gray-800'>{product.category}</td>
+              <td className='px-6 py-4 font-medium text-gray-800'>{product.stock}</td>
               <td>
                 <div className='flex items-center justify-center gap-3'>
                   <button>
@@ -39,6 +55,8 @@ const AllProducts = () => {
                 </div>
               </td>
             </tr>
+            ))}
+           
           </tbody>
         </table>
       </div>

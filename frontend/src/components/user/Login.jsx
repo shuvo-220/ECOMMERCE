@@ -19,7 +19,11 @@ const Login = () => {
             if(res.data){
                 localStorage.setItem('user', JSON.stringify(res.data.user))
                 localStorage.setItem('token', res.data.token)
-                navigate('/')
+                if(res.data.user.role === 'admin'){
+                     navigate('/admin')
+                }else{
+                     navigate('/')
+                }
             }
         } catch (error) {
             console.log(error.message)

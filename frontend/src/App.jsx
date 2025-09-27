@@ -10,6 +10,9 @@ import AddProduct from './components/admin/AddProduct'
 import AllProducts from './components/admin/AllProducts'
 import Orders from './components/admin/Orders'
 import AllUsers from './components/admin/AllUsers'
+import Profile from './components/Profile'
+import ProtectedRoute from './components/ProtectedRoute'
+import PublicRoute from './components/PublicRoute'
 
 const App = () => {
   return (
@@ -18,10 +21,13 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
+       
+        <Route path='/login' element={<PublicRoute><Login /></PublicRoute>} />
+
+        <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
 
         {/* admin route */}
-        <Route path='/admin' element={<Admin />} >
+        <Route path='/admin' element={<ProtectedRoute role='admin'><Admin /></ProtectedRoute>} >
           <Route index element={<AdminDashboard />} />
           <Route path='addproduct' element={<AddProduct />} />
           <Route path='allproduct' element={<AllProducts />} />

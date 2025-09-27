@@ -19,3 +19,12 @@ exports.create = async(req, res)=>{
         console.log(error.message)
     }
 }
+
+
+exports.getAllProducts = async(req, res)=>{
+    const products = await Product.find({});
+    if(!products){
+        res.status(500).json('products not found');
+    }
+    res.status(200).json(products)
+}

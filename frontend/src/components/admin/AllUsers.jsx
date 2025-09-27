@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../redux/slice/userSlice';
 
 const AllUsers = () => {
+
+  const dispatch = useDispatch();
+  const{isLoading, users, error} = useSelector(state=>state.users)
+  
+  useEffect(()=>{
+    dispatch(getUsers())
+  },[dispatch])
+
   return (
     <div>
           <h1 className='text-2xl font-semibold py-2 text-gray-700'>All Users</h1>
@@ -17,11 +27,14 @@ const AllUsers = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className='px-6 py-4 font-medium text-gray-800'>Shuvo</td>
-                  <td className='px-6 py-4 font-medium text-gray-800'>email@gmail.com</td>
-                  <td className='px-6 py-4 font-medium text-gray-800'>User</td>
+                {users.map((user ,index)=>(
+                  <tr key={index}>
+                  <td className='px-6 py-4 font-medium text-gray-800'>{user.name}</td>
+                  <td className='px-6 py-4 font-medium text-gray-800'>{user.email}</td>
+                  <td className='px-6 py-4 font-medium text-green-500'>{user.role}</td>
                 </tr>
+                ))}
+                
               </tbody>
             </table>
           </div>

@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaChartLine } from "react-icons/fa";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import { AiFillProduct } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../redux/slice/userSlice';
+import { getProduct } from '../../redux/slice/getProductSlice';
 
 const AdminDashboard = () => {
+
+  const{products} = useSelector(state=>state.products)
+  const{users} = useSelector(state=>state.users)
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getUsers())
+    dispatch(getProduct())
+  },dispatch)
+
   return (
     <div>
         <h1 className='text-xl text-neutral-700 py-3'>Dashboard Analytics</h1>
@@ -31,7 +45,7 @@ const AdminDashboard = () => {
             <h3 className='text-lg font-semibold text-neutral-500'>Total Products</h3>
             <div className='flex items-center justify-between  py-2'>
               <AiFillProduct fontSize={25} className='text-orange-500' />
-              <span className='font-semibold text-gray-600 text-lg mr-5'>21</span>
+              <span className='font-semibold text-gray-600 text-lg mr-5'>{products.length}</span>
             </div>
           </div>
 
@@ -39,7 +53,7 @@ const AdminDashboard = () => {
             <h3 className='text-lg font-semibold text-neutral-500'>Total Users</h3>
             <div className='flex items-center justify-between  py-2'>
               <FaUsers fontSize={25} className='text-gray-600' />
-              <span className='font-semibold text-gray-600 text-lg mr-5'>15</span>
+              <span className='font-semibold text-gray-600 text-lg mr-5'>{users.length}</span>
             </div>
           </div>
 
