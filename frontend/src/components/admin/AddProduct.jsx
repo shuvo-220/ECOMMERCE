@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addProduct } from '../../redux/slice/addProductSlice'
+import { useNavigate } from 'react-router-dom'
 
 const AddProduct = () => {
 
@@ -12,6 +13,7 @@ const AddProduct = () => {
   const[image, setImage] = useState()
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit=(e)=>{
     e.preventDefault();
@@ -24,6 +26,7 @@ const AddProduct = () => {
     formData.append('image', image)
 
     dispatch(addProduct(formData))
+    navigate('/admin/allproduct')
   }
 
   return (

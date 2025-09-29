@@ -28,3 +28,11 @@ exports.getAllProducts = async(req, res)=>{
     }
     res.status(200).json(products)
 }
+
+exports.productDetails = async(req, res)=>{
+    const product = await Product.findById(req.params.id)
+    if(!product){
+        res.status(500).json('product not found');
+    }
+    res.status(200).json(product);
+}
