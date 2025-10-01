@@ -5,6 +5,7 @@ const cors = require('cors');
 require('./db/db');
 const user = require('./routes/userRoute');
 const product = require('./routes/productRoute');
+const order = require('./routes/orderRoute');
 
 const PORT = process.env.PORT || 5000;
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(cors({
 
 app.use('/api/user', user);
 app.use('/api/product', product);
+app.use('/api/order', order);
 
 app.listen(PORT, ()=>{
     console.log(`server is running on port : ${PORT}`)

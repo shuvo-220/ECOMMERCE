@@ -17,6 +17,7 @@ import ProductDetails from './components/ProductDetails'
 import Footer from './components/Footer'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout'
+import PlaceOrder from './components/PlaceOrder'
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path='/placeOrder' element={<PlaceOrder />} />
 
         {/* admin route */}
         <Route path='/admin' element={<ProtectedRoute role='admin'><Admin /></ProtectedRoute>} >
