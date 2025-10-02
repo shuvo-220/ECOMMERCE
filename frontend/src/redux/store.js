@@ -8,6 +8,7 @@ import increaseQty from "./slice/AddToCartSlice";
 import decreaseQty from "./slice/AddToCartSlice";
 import removeCart from "./slice/AddToCartSlice";
 import order from './slice/orderSlice';
+import userOrder from './slice/myOrder';
 
 
 const store = configureStore({
@@ -20,7 +21,8 @@ const store = configureStore({
         increaseQty: increaseQty,
         decreaseQty: decreaseQty,
         removeCart : removeCart,
-        order:order
+        order:order,
+        userOrder:userOrder
     }
 })
 

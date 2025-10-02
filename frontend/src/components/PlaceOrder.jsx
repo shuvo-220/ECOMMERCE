@@ -1,7 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { createOrder } from '../redux/slice/orderSlice';
+import { removeCart } from '../redux/slice/AddToCartSlice';
 
 const PlaceOrder = () => {
+
+  const dispatch = useDispatch()
+
+  const navigate = useNavigate();
+
 
   const customerInfo = JSON.parse(localStorage.getItem('customerInfo'));
   const cart = JSON.parse(localStorage.getItem('cart'));
@@ -11,6 +19,40 @@ const PlaceOrder = () => {
 
   const shippingPrice = 5
   const totalShippingPrice = cart.length === 0 ? 0 : (totalPrice >= 1000 ? 0 : shippingPrice)
+
+  const totalProductPrice = totalShippingPrice + totalPrice
+
+   const orderData = {
+      address: customerInfo?.address,
+      phone: customerInfo?.phone,
+      postalCode: customerInfo?.postalCode,
+      district: customerInfo?.district,
+      division: customerInfo?.division,
+      items: cart.map(item => ({
+        name: item.name,
+        qty: item.qty,
+        image: item.image,
+        price: item.price,
+        product: item._id
+      })),
+      user: user?._id,
+      itemsPrice: totalPrice,              
+      shippingPrice: totalShippingPrice,   
+      totalPrice: totalProductPrice
+    }
+
+ const handleOrderClick = async () => {
+  try {
+    await dispatch(createOrder(orderData)).unwrap();
+    dispatch(removeCart());
+    localStorage.removeItem("cart");
+    localStorage.removeItem("customerInfo");
+
+    navigate("/myorder");
+  } catch (err) {
+    console.error("Order failed:", err);
+  }
+};
 
   return (
     <div className='py-5 px-20 h-screen'>
@@ -32,7 +74,7 @@ const PlaceOrder = () => {
             <h2 className='text-sm text-gray-700 mt-1 ml-3'>Division : {customerInfo.division}</h2>
           </div>
 
-          <button className='bg-neutral-700 text-center text-white py-1 w-full mt-5 cursor-pointer hover:bg-neutral-950 duration-300'>Place Order</button>
+          <button onClick={handleOrderClick} className='bg-neutral-700 text-center text-white py-1 w-full mt-5 cursor-pointer hover:bg-neutral-950 duration-300'>Place Order</button>
 
         </div>
 
@@ -59,12 +101,12 @@ const PlaceOrder = () => {
             }
           </div>
 
-           <div className='flex flex-col'>
-              <div className='flex items-center justify-between'><h3 className='text-gray-500'>Total Shipping Price : ${totalShippingPrice}</h3></div>
-              <div><h3 className='text-gray-500'>Sub Total :  {totalPrice}</h3></div>
-              <hr className='text-gray-500'/>
-              <div><h3 className='text-gray-500 font-semibold py-1'>Total Price : ${totalShippingPrice + totalPrice}</h3></div>
-            </div>
+          <div className='flex flex-col'>
+            <div className='flex items-center justify-between'><h3 className='text-gray-500'>Total Shipping Price : ${totalShippingPrice}</h3></div>
+            <div><h3 className='text-gray-500'>Sub Total :  {totalPrice}</h3></div>
+            <hr className='text-gray-500' />
+            <div><h3 className='text-gray-500 font-semibold py-1'>Total Price : ${totalProductPrice}</h3></div>
+          </div>
         </div>
 
       </div>

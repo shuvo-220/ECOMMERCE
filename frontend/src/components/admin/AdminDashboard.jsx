@@ -37,7 +37,7 @@ const AdminDashboard = () => {
             <h3 className='text-lg font-semibold text-neutral-500'>Total Orders</h3>
             <div className='flex items-center justify-between  py-2'>
               <BiSolidShoppingBags fontSize={25} className='text-purple-500' />
-              <span className='font-semibold text-gray-600 text-lg mr-5'>8</span>
+              <span className='font-semibold text-gray-600 text-lg mr-5'>12</span>
             </div>
           </div>
 

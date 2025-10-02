@@ -16,7 +16,7 @@ const Checkout = () => {
   const totalShippingPrice = cart.length === 0 ? 0 : (totalPrice >= 1000 ? 0 : shippingPrice)
 
   const[address, setAddress] = useState();
-  const[number, setNumber] = useState();
+  const[phone, setPhone] = useState();
   const[postalCode, setPostalCode] = useState();
   const[district, setDistrict] = useState();
   const[division, setDivision] = useState();  
@@ -24,7 +24,7 @@ const Checkout = () => {
   const handleSubmit=(e)=>{
     e.preventDefault();
     const customerInfo={
-      address,number,postalCode,district,division
+      address,phone,postalCode,district,division
     }
     localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
     navigate('/placeOrder')
@@ -62,7 +62,7 @@ const Checkout = () => {
               <div className='border border-gray-300' >
                 <input type='number' placeholder='Your Number'
                   className='py-1 px-2 focus:outline-none text-gray-500'
-                  onChange={(e)=>setNumber(e.target.value)}
+                  onChange={(e)=>setPhone(e.target.value)}
                   required />
               </div>
 

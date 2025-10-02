@@ -18,6 +18,7 @@ import Footer from './components/Footer'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import PlaceOrder from './components/PlaceOrder'
+import MyOrder from './components/MyOrder'
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/placeOrder' element={<PlaceOrder />} />
+        <Route path='/myorder' element={<MyOrder />} />
 
         {/* admin route */}
         <Route path='/admin' element={<ProtectedRoute role='admin'><Admin /></ProtectedRoute>} >
