@@ -6,18 +6,24 @@ import { FaUsers } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../redux/slice/userSlice';
 import { getProduct } from '../../redux/slice/getProductSlice';
+import { getAllOrders } from '../../redux/slice/getAllOrders';
 
 const AdminDashboard = () => {
 
   const{products} = useSelector(state=>state.products)
   const{users} = useSelector(state=>state.users)
+  const{orders} = useSelector(state=>state.orders)
+
+  const totalAmount = orders.reduce((a,c)=>a+c.totalPrice, 0)
+
 
   const dispatch = useDispatch()
 
   useEffect(()=>{
     dispatch(getUsers())
     dispatch(getProduct())
-  },dispatch)
+    dispatch(getAllOrders())
+  },[dispatch])
 
   return (
     <div>
@@ -29,7 +35,7 @@ const AdminDashboard = () => {
             <h3 className='text-lg font-semibold text-neutral-500'>Total Sale</h3>
             <div className='flex items-center justify-between py-2'>
               <FaChartLine fontSize={25} className='text-green-500' />
-              <span className='font-semibold text-gray-600 text-lg mr-5'>$544</span>
+              <span className='font-semibold text-gray-600 text-lg mr-5'>${totalAmount}</span>
             </div>
           </div>
 
@@ -37,7 +43,7 @@ const AdminDashboard = () => {
             <h3 className='text-lg font-semibold text-neutral-500'>Total Orders</h3>
             <div className='flex items-center justify-between  py-2'>
               <BiSolidShoppingBags fontSize={25} className='text-purple-500' />
-              <span className='font-semibold text-gray-600 text-lg mr-5'>12</span>
+              <span className='font-semibold text-gray-600 text-lg mr-5'>{orders.length}</span>
             </div>
           </div>
 

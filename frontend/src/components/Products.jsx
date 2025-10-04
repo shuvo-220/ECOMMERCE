@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Product from './Product';
 import { getProduct } from '../redux/slice/getProductSlice';
+import Category from './Category';
 
 const Products = () => {
 
     const { isLoading, products, error } = useSelector(state => state.products);
+    const selectedCategory = useSelector(state=>state.category.category);
+    const search = useSelector(state=>state.search.query)
 
     const dispatch = useDispatch()
 
@@ -13,20 +16,21 @@ const Products = () => {
         dispatch(getProduct())
     }, [dispatch])
 
+    //filter product
+    const filterProducts = 
+    selectedCategory === 'all' ? products : products.filter((p)=>p.category===selectedCategory)
+
+    const allProduct = filterProducts.filter((item)=>item.name.toLowerCase().includes(search.toLowerCase()))
+
     return (
-        <div>
+        <div className='h-screen'>
             <h1 className='text-center text-2xl text-gray-500 tracking-widest uppercase font-semibold'>Products</h1>
 
             <div className='flex flex-row gap-5 pt-10 pb-10'>
 
-                <div className=" bg-gray-100 p-4 max-h-max sticky left-0 top-50 hidden md:block">
+                <div className=" bg-gray-100 p-4 max-h-max hidden lg:block fixed top-30">
                     <h2 className="text-lg font-semibold mb-4">Category</h2>
-                    <ul className="space-y-2">
-                        <li className="cursor-pointer hover:text-blue-500">All</li>
-                        <li className="cursor-pointer hover:text-blue-500">Electronics</li>
-                        <li className="cursor-pointer hover:text-blue-500">Clothes</li>
-                        <li className="cursor-pointer hover:text-blue-500">Shoes</li>
-                    </ul>
+                    <Category />
                 </div>
 
 
@@ -39,7 +43,7 @@ const Products = () => {
                     {error && <p>{error.message}</p>}
 
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 place-content-center">
-                        {products.map((product, index) => (
+                        {allProduct.map((product, index) => (
                             <Product key={index} product={product} />
                         ))}
                     </div>

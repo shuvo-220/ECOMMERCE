@@ -9,6 +9,9 @@ import decreaseQty from "./slice/AddToCartSlice";
 import removeCart from "./slice/AddToCartSlice";
 import order from './slice/orderSlice';
 import userOrder from './slice/myOrder';
+import allOrderSlice from './slice/getAllOrders';
+import category from './slice/categorySlice';
+import search from './slice/searchSlice';
 
 
 const store = configureStore({
@@ -22,7 +25,10 @@ const store = configureStore({
         decreaseQty: decreaseQty,
         removeCart : removeCart,
         order:order,
-        userOrder:userOrder
+        userOrder:userOrder,
+        orders:allOrderSlice,
+        category:category,
+        search:search
     }
 })
 

@@ -19,3 +19,20 @@ exports.getOrder = async (req, res) => {
     }
     res.status(200).json(order)
 }
+
+
+exports.getAllOrders = async(req, res)=>{
+    const orders = await Order.find({})
+    if(!orders){
+        res.status(400).json('orders not found');
+    }
+    res.status(200).json(orders)
+}
+
+exports.getOrderDetails = async(req, res)=>{
+    const order = await Order.findById(req.params.id)
+    if(!order){
+        res.status(400).json('order not found');
+    }
+    res.status(200).json(order)
+}
