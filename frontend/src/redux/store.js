@@ -12,6 +12,9 @@ import userOrder from './slice/myOrder';
 import allOrderSlice from './slice/getAllOrders';
 import category from './slice/categorySlice';
 import search from './slice/searchSlice';
+import orderDetails from './slice/orderDetails';
+import deleteOrder from './slice/deleteSlice';
+import orderStatus from './slice/updateOrder';
 
 
 const store = configureStore({
@@ -28,7 +31,10 @@ const store = configureStore({
         userOrder:userOrder,
         orders:allOrderSlice,
         category:category,
-        search:search
+        search:search,
+        orderDetails:orderDetails,
+        deleteOrder:deleteOrder,
+        orderStatus:orderStatus
     }
 })
 

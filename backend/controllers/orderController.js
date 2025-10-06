@@ -30,9 +30,31 @@ exports.getAllOrders = async(req, res)=>{
 }
 
 exports.getOrderDetails = async(req, res)=>{
-    const order = await Order.findById(req.params.id)
+    const order = await Order.findById(req.params.id).populate("user", "name email");
     if(!order){
         res.status(400).json('order not found');
     }
     res.status(200).json(order)
 }
+
+exports.deleteOrder = async(req, res)=>{
+    const order = await Order.findByIdAndDelete(req.params.id)
+    if(!order){
+        res.status(500).json('order not found');
+    }
+    res.status(200).json('order deleted successfully');
+}
+
+
+exports.updateOrderStatus=async(req, res)=>{
+    const order = await Order.findById(req.params.id);
+    if(order.orderStatus === 'Delivered'){
+        res.status(400).json('you already delivered this order')
+    }
+    order.orderStatus = req.body.status
+    if(req.body.status === 'Delivered'){
+        order.deliveredAt = Date.now()
+    }
+    await order.save();
+}
+

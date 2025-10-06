@@ -19,6 +19,7 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import PlaceOrder from './components/PlaceOrder'
 import MyOrder from './components/MyOrder'
+import OrderDetails from './components/admin/OrderDetails'
 
 const App = () => {
   return (
@@ -27,23 +28,20 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<PublicRoute><Register /></PublicRoute>} />
-       
         <Route path='/login' element={<PublicRoute><Login /></PublicRoute>} />
-
         <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/placeOrder' element={<PlaceOrder />} />
         <Route path='/myorder' element={<MyOrder />} />
-
         {/* admin route */}
         <Route path='/admin' element={<ProtectedRoute role='admin'><Admin /></ProtectedRoute>} >
           <Route index element={<AdminDashboard />} />
           <Route path='addproduct' element={<AddProduct />} />
           <Route path='allproduct' element={<AllProducts />} />
           <Route path='orders' element={<Orders />} />
+          <Route path='orders/:id' element={<OrderDetails />} />
           <Route path='users' element={<AllUsers />} />
         </Route>
       </Routes>

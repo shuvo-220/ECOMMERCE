@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllOrders } from '../../redux/slice/getAllOrders';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { deleteOrder } from '../../redux/slice/deleteSlice';
+import { orderStatus } from '../../redux/slice/updateOrder';
 
 const Orders = () => {
 
@@ -12,11 +14,17 @@ const Orders = () => {
 
   const dispatch = useDispatch()
 
-  console.log(orders)
-
   useEffect(() => {
     dispatch(getAllOrders())
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this order?")) {
+      dispatch(deleteOrder(id)).then(() => {
+        dispatch(getAllOrders()); // refresh the list
+      });
+    }
+  };
 
 
   return (
@@ -49,7 +57,11 @@ const Orders = () => {
                   <td className='px-6 py-4 font-medium text-gray-800'>{item.qty}</td>
                   <td className='px-6 py-4 font-medium text-gray-800'>
                     <div>
-                      <select value={order.orderStatus}>
+                      <select value={order.orderStatus}
+                        onChange={(e) => dispatch(orderStatus({ id: order._id, status: e.target.value }))
+                          .then(() => dispatch(getAllOrders()))}
+                        className={`${order.orderStatus === "Delivered" ? "text-green-600 font-semibold" : ""}`}
+                      >
                         <option value="Pending">Pending</option>
                         <option value="Processing">Processing</option>
                         <option value="Delivered">Delivered</option>
@@ -58,12 +70,12 @@ const Orders = () => {
                   </td>
                   <td>
                     <div className='flex items-center justify-center gap-5'>
-                      <Link>
-                        <FaRegEdit fontSize={22} className='text-green-500 cursor-pointer'/>
+                      <Link to={`/admin/orders/${order._id}`}>
+                        <FaRegEdit fontSize={22} className='text-green-500 cursor-pointer' />
                       </Link>
-                      <Link>
+                      <button onClick={() => handleDelete(order._id)}>
                         <MdDeleteOutline fontSize={22} className='text-red-500' />
-                      </Link>
+                      </button>
                     </div>
                   </td>
                 </tr>
