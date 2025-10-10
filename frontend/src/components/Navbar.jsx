@@ -32,7 +32,7 @@ const Navbar = () => {
         <div className='flex items-center justify-between'>
           {/* logo */}
           <Link to='/'>
-            <span className='font-semibold text-xl tracking-widest text-neutral-900 uppercase'>ecommerce</span>
+            <span className='font-semibold text-xl tracking-widest text-neutral-700'>Online<span className='text-blue-500 font-bold'>Mart</span></span>
           </Link>
 
           {/* cart and profilr */}
