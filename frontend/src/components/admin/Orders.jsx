@@ -58,12 +58,15 @@ const Orders = () => {
                   <td className='px-6 py-4 font-medium text-gray-800'>
                     <div>
                       <select value={order.orderStatus}
-                        onChange={(e) => dispatch(orderStatus({ id: order._id, status: e.target.value }))
-                          .then(() => dispatch(getAllOrders()))}
+                        disabled={order.orderStatus === "Delivered"}
+                        onChange={(e) =>
+                          dispatch(orderStatus({ id: order._id, status: e.target.value }))
+                            .then(() => dispatch(getAllOrders()))
+                        }
                         className={`${order.orderStatus === "Delivered" ? "text-green-600 font-semibold" : ""}`}
                       >
                         <option value="Pending">Pending</option>
-                        <option value="Processing">Processing</option>
+                        <option value="Processing" >Processing</option>
                         <option value="Delivered">Delivered</option>
                       </select>
                     </div>

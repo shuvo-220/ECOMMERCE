@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { createOrder } from '../redux/slice/orderSlice';
-import { removeCart } from '../redux/slice/AddToCartSlice';
+import { clearCart } from '../redux/slice/AddToCartSlice';
 
 const PlaceOrder = () => {
 
@@ -44,7 +44,7 @@ const PlaceOrder = () => {
  const handleOrderClick = async () => {
   try {
     await dispatch(createOrder(orderData)).unwrap();
-    dispatch(removeCart());
+    dispatch(clearCart());
     localStorage.removeItem("cart");
     localStorage.removeItem("customerInfo");
 
@@ -53,6 +53,10 @@ const PlaceOrder = () => {
     console.error("Order failed:", err);
   }
 };
+
+useEffect(()=>{
+  window.scrollTo(0,0)
+})
 
   return (
     <div className='py-5 px-20 h-screen'>

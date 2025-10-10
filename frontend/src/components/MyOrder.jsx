@@ -40,7 +40,12 @@ const MyOrder = () => {
                   <td className='px-6 py-4 font-medium text-gray-800'>{item.name}</td>
                   <td className='px-6 py-4 font-medium text-gray-800'>${item.price}</td>
                   <td className='px-6 py-4 font-medium text-gray-800'>{item.qty}</td>
-                  <td className='px-6 py-4 font-medium text-gray-800'>{singleOrder.orderStatus}</td>
+                  <td className={`px-6 py-4 font-medium ${singleOrder.orderStatus === 'Delivered'
+                      ? 'text-green-500'
+                      : singleOrder.orderStatus === 'Processing'
+                        ? 'text-yellow-500'
+                        : 'text-red-500'
+                    }`}>{singleOrder.orderStatus}</td>
                 </tr>
               ))
             ))}
