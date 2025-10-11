@@ -5,6 +5,8 @@ import { base_url } from '../../baseUrl';
 export const orderStatus = createAsyncThunk('updateOrder', async({id, status}, {rejectWithValue})=>{
     try {
         const res = await axios.put(`${base_url}/api/order/${id}`,{status},{
+
+      
             headers:{
                 Authorization:`Bearer ${localStorage.getItem('token')}`
             }

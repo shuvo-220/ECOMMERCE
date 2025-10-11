@@ -5,6 +5,7 @@ import { base_url } from '../../baseUrl';
 export const getUserOrder=createAsyncThunk('userOrder', async(__, {rejectWithValue})=>{
     try {
         const res = await axios.get(`${base_url}/api/order/myorder`,{
+
             headers:{
                 'Content-Type':'application/json',
                 Authorization : `Bearer ${localStorage.getItem('token')}`

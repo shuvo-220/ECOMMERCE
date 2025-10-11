@@ -6,6 +6,7 @@ import { base_url } from '../../baseUrl';
 export const deleteOrder = createAsyncThunk('deleteOrder', async(id, {rejectWithValue})=>{
     try {
         const res = await axios.delete(`${base_url}/api/order/${id}`, {
+
             headers:{
                 Authorization:`Bearer ${localStorage.getItem('token')}`
             }

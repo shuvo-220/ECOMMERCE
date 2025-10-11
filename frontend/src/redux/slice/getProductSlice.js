@@ -5,6 +5,7 @@ import { base_url } from '../../baseUrl';
 export const getProduct = createAsyncThunk('getProduct', async(_, {rejectWithValue})=>{
     try {
         const res = await axios.get(`${base_url}/api/product/products`)
+
         return res.data
     } catch (error) {
         return rejectWithValue(error.message)

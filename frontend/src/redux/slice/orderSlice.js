@@ -7,6 +7,7 @@ export const createOrder = createAsyncThunk(
   async (orderData, { rejectWithValue }) => {
     try {
       const res = await axios.post(`${base_url}/api/order/create`, orderData,
+
         { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       return res.data;

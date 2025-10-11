@@ -5,6 +5,7 @@ import { base_url } from '../../baseUrl';
 export const getAllOrders = createAsyncThunk('orders', async(_, {rejectWithValue})=>{
     try {
         const res = await axios.get(`${base_url}/api/order/orders`,{
+
             headers:{
                 Authorization:`Bearer ${localStorage.getItem('token')}`
             }
