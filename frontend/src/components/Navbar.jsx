@@ -56,11 +56,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {open && <div className='absolute py-3 px-3 shadow-md bg-white rounded-sm md:right-10 md:top-15 right-4 top-15 z-10'>
+      {open && <div className='absolute py-3 px-3 shadow-md bg-white rounded-sm md:right-10 md:top-15 right-4 top-15 z-999'>
         <div className='flex flex-col justify-center gap-2'>
           <Link to='/profile' onClick={() => setOpen(false)} className='text-neutral-500 hover:text-neutral-800 duration-300'>Profile</Link>
           <Link to='/myorder' onClick={()=>setOpen(false)} className='text-neutral-500 hover:text-neutral-800 duration-300'>My Orders</Link>
-          <Link onClick={handleLogout} className='text-neutral-500 hover:text-neutral-800 duration-300'>Logout</Link>
+          {
+            user ? <Link onClick={handleLogout} className='text-neutral-500 hover:text-neutral-800 duration-300'>Logout</Link>
+            :<Link to='/login' onClick={()=>setOpen(false)} className='text-neutral-500 hover:text-neutral-800 duration-300'>Login</Link>
+          }
         </div>
       </div>}
     </>
