@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { base_url } from '../../baseUrl';
 
 export const getUsers = createAsyncThunk('getUsers', async(_, {rejectWithValue})=>{
     try {
-        const res = await axios.get('https://deployment-backend-brown.vercel.app/api/user/users', {
+        const res = await axios.get(`${base_url}/api/user/users`, {
             headers:{
                 Authorization :`Bearer ${localStorage.getItem('token')}`
             }
