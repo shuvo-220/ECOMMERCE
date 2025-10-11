@@ -15,7 +15,7 @@ app.get('', (req,res)=>{
 
 app.use(express.json());
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://tangerine-taiyaki-bb69b4.netlify.app',
     credentials:true
 }))
 
