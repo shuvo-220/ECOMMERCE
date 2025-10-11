@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios'
+import { base_url } from '../../baseUrl';
 
 export const orderStatus = createAsyncThunk('updateOrder', async({id, status}, {rejectWithValue})=>{
     try {
-        const res = await axios.put(`http://localhost:5000/api/order/${id}`,{status},{
+        const res = await axios.put(`${base_url}/api/order/${id}`,{status},{
             headers:{
                 Authorization:`Bearer ${localStorage.getItem('token')}`
             }

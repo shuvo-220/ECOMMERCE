@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { base_url } from '../../baseUrl';
 
 
 export const addProduct = createAsyncThunk('addProduct', async(formData, {rejectWithValue })=>{
     try {
-        const res = await axios.post('http://localhost:5000/api/product/create', formData,{
+        const res = await axios.post(`${base_url}/api/product/create`, formData,{
             headers:{
                 'Content-Type':'multipart/form-data',
                 Authorization:`Bearer ${localStorage.getItem('token')}` 

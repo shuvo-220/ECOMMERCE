@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { base_url } from '../../baseUrl';
 
 
 export const deleteOrder = createAsyncThunk('deleteOrder', async(id, {rejectWithValue})=>{
     try {
-        const res = await axios.delete(`http://localhost:5000/api/order/${id}`, {
+        const res = await axios.delete(`${base_url}/api/order/${id}`, {
             headers:{
                 Authorization:`Bearer ${localStorage.getItem('token')}`
             }

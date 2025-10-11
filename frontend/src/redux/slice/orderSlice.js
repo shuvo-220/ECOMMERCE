@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { base_url } from '../../baseUrl';
 
 export const createOrder = createAsyncThunk(
   'createOrder',
   async (orderData, { rejectWithValue }) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/order/create', orderData,
+      const res = await axios.post(`${base_url}/api/order/create`, orderData,
         { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       return res.data;

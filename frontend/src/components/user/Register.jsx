@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { IoIosLogIn } from "react-icons/io";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { base_url } from '../../baseUrl';
 
 const Register = () => {
 
@@ -24,7 +25,7 @@ const Register = () => {
         formData.append('email', email)
         formData.append('password', password)
         formData.append('image', image)
-        const res = await axios.post('http://localhost:5000/api/user/register', formData)
+        const res = await axios.post(`${base_url}/api/user/register`, formData)
         if(res.data){
             navigate('/login')
         }

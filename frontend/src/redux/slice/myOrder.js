@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { base_url } from '../../baseUrl';
 
 export const getUserOrder=createAsyncThunk('userOrder', async(__, {rejectWithValue})=>{
     try {
-        const res = await axios.get('http://localhost:5000/api/order/myorder',{
+        const res = await axios.get(`${base_url}/api/order/myorder`,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization : `Bearer ${localStorage.getItem('token')}`

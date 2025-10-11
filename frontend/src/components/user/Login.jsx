@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { base_url } from '../../baseUrl';
 
 const Login = () => {
 
@@ -16,7 +17,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:5000/api/user/login', { email, password })
+            const res = await axios.post(`${base_url}/api/user/login`, { email, password })
             if (res.data) {
                 localStorage.setItem('user', JSON.stringify(res.data.user))
                 localStorage.setItem('token', res.data.token)
