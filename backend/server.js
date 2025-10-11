@@ -8,6 +8,11 @@ const product = require('./routes/productRoute');
 const order = require('./routes/orderRoute');
 
 const PORT = process.env.PORT || 5000;
+
+app.get('', (req,res)=>{
+    res.json('backend server running')
+})
+
 app.use(express.json());
 app.use(cors({
     origin:'http://localhost:5173',
