@@ -15,7 +15,7 @@ app.get('', (req,res)=>{
 
 app.use(express.json());
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://ecommerce-lhfo.vercel.app',
     credentials:true
 }))
 
