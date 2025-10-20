@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <div>
-        <div className='flex items-center justify-center'>
+        <div className='flex items-center justify-center h-screen'>
             <div>
                 <img src={user.image} className='w-[250px] h-[250px]' />
             </div>

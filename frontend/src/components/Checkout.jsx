@@ -31,7 +31,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className='px-20 py-10 h-120'>
+    <div className='px-20 py-10 h-screen'>
       <div className='flex gap-10 items-center justify-center'>
         <div className='flex-2'>
           <h2 className='py-5 text-gray-500 text-2xl'>Customer Info</h2>
