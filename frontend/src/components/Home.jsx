@@ -9,7 +9,7 @@ const Home = () => {
   })
 
   return (
-    <div className=''>
+    <div className='min-h-screen'>
       <div className='mx-10'>
       <SearchBar />
       <Products />
