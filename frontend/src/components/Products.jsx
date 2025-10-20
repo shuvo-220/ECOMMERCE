@@ -37,7 +37,7 @@ const Products = () => {
 
 
                 {/* Products */}
-                <div className="flex items-center justify-center mx-auto">
+                <div className="flex items-center justify-center mx-auto h-screen">
 
                     {isLoading && <p>Loading...</p>}
                     {error && <p>{error.message}</p>}

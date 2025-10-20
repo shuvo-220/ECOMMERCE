@@ -15,7 +15,7 @@ const MyOrder = () => {
   }, [dispatch])
 
   return (
-    <div className='py-10 px-20 max-h-max h-screen'>
+    <div className='py-10 px-20 h-screen'>
       <div className='overflow-x-auto rounded-sm'>
 
         <h1 className='text-gray-800 text-2xl py-5'>My-Orders</h1>
