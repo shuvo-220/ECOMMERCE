@@ -23,7 +23,7 @@ const Products = () => {
     const allProduct = filterProducts.filter((item)=>item.name.toLowerCase().includes(search.toLowerCase()))
 
     return (
-        <div className=''>
+        <div className='h-screen'>
             <h1 className='text-center text-2xl text-gray-500 tracking-widest uppercase font-semibold'>Products</h1>
 
             <div className='flex flex-row gap-5 pt-10 pb-10'>
@@ -37,7 +37,7 @@ const Products = () => {
 
 
                 {/* Products */}
-                <div className="flex items-center justify-center mx-auto h-screen">
+                <div className="flex items-center justify-center mx-auto">
 
                     {isLoading && <p>Loading...</p>}
                     {error && <p>{error.message}</p>}
