@@ -23,7 +23,7 @@ const ProductDetails = () => {
                 <div className='flex items-center justify-center pt-10 gap-5'>
 
                     <div className='flex items-center justify-center'>
-                        <img src={product.image} className='w-[350ox] h-[350px]' />
+                        <img src={product.image} className='w-[350px] h-[350px]' />
                     </div>
 
                     <div className=''>
