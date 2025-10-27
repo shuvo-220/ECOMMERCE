@@ -20,7 +20,7 @@ const ProductDetails = () => {
             <div>
                 <h1 className='text-2xl text-gray-700 '>Details of #{product.name}</h1>
 
-                <div className='flex-col md:flex items-center justify-center pt-10 gap-5'>
+                <div className='flex-col md:flex-row items-center justify-center pt-10 gap-5'>
 
                     <div className='flex items-center justify-center'>
                         <img src={product.image} className='w-[350px] h-[350px]' />
